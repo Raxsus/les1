@@ -7,7 +7,8 @@ function App() {
   return (
     <div style={divStyle}>
       <h1>Hellow World!!!</h1>
-      <Car></Car>
+      <Car carName={'Ford'} year={Math.round(Math.random() * 1000)}></Car>
+      <Car carName={'Mazda'} year={Math.round(Math.random() * 1000)}></Car>
     </div>
   );
 }

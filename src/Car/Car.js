@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default () => (
+export default ({carName, year}) => (
   <div>
-    <h2>Car Component</h2>
-    <strong>test</strong>
+    <h3>Car Name: {carName}</h3>
+    <p>Number: <strong>{year}</strong></p>
   </div>
 );
