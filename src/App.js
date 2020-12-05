@@ -16,18 +16,24 @@ class App extends Component {
     showCars: false
   }
 
-  changeTitleHandler = (newTitle) => {
-
-    this.setState({
-      pageTitle: newTitle
-    });
-
+  onChangeName = (name, index) => {
+    // Clone array
+    const cars = [...this.state.cars];
+    cars[index].name = name
+    this.setState({cars});
   }
 
   toggleCarsHandler = () => {
     this.setState({
       showCars: !this.state.showCars
     })
+  }
+
+  deleteHandler (index) {
+    // Clone array
+    const cars = this.state.cars.concat();
+    cars.splice(index, 1);
+    this.setState({ cars })
   }
 
   render() {
@@ -43,7 +49,8 @@ class App extends Component {
             key={index}
             name={car.name}
             year={car.year}
-            onChangeTitle={() => this.changeTitleHandler(car.name)}
+            onDelete={this.deleteHandler.bind(this, index)}
+            onChangeName={event => this.onChangeName(event.target.value, index)}
           />
         );
       });
