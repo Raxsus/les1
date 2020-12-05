@@ -12,7 +12,8 @@ class App extends Component {
       { name: 'Жигули', year: 1985 },
       { name: 'Волга', year: 1991 }
     ],
-    pageTitle: 'React Components'
+    pageTitle: 'React Components',
+    showCars: false
   }
 
   changeTitleHandler = (newTitle) => {
@@ -23,36 +24,41 @@ class App extends Component {
 
   }
 
-  handleInput = (event) => {
+  toggleCarsHandler = () => {
     this.setState({
-      pageTitle: event.target.value
+      showCars: !this.state.showCars
     })
   }
 
   render() {
 
     const divStyle = {textAlign: 'center'};
+
+    let cars = null;
+
+    if (this.state.showCars){
+      cars = this.state.cars.map((car, index) => {
+        return (
+          <Car
+            key={index}
+            name={car.name}
+            year={car.year}
+            onChangeTitle={() => this.changeTitleHandler(car.name)}
+          />
+        );
+      });
+    }
+
     return (
       <div style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
 
-        <input type="text" onChange={this.handleInput}/>
-
         {/* Better to use .bind */}
-        <button onClick={this.changeTitleHandler.bind(this, 'Changed!')}>
-          Change Title
+        <button onClick={this.toggleCarsHandler}>
+          Toggle Cars
         </button>
 
-        { this.state.cars.map((car, index) => {
-          return (
-            <Car
-              key={index}
-              name={car.name}
-              year={car.year}
-              onChangeTitle={() => this.changeTitleHandler(car.name)}
-            />
-          );
-        }) }
+        { cars }
       </div>
     );
   }
