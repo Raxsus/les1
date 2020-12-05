@@ -15,11 +15,19 @@ class App extends Component {
   }
 
   changeTitleHandler = () => {
-    console.log('click');
+
+    const _old = this.state.pageTitle;
+
+    const _new = _old + ' (changed)';
+
+    this.setState({
+      pageTitle: _new
+    });
+
   }
 
   render() {
-
+    console.log('render');
     const cars = this.state.cars;
 
     const divStyle = {textAlign: 'center'};
