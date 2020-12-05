@@ -1,9 +1,8 @@
 import React from 'react';
 
-export default ({carName, year, children}) => (
+export default ({name, year}) => (
   <div>
-    <h3>Car Name: {carName}</h3>
-    <p>Number: <strong>{year}</strong></p>
-    { children }
+    <h3>Car Name: {name}</h3>
+    <p>Year: <strong>{year}</strong></p>
   </div>
 );
